@@ -14,6 +14,9 @@ app.set('view engine', '.hbs');
 app.use(bodyParser.urlencoded({	extended: false }));
 app.use(bodyParser.json());
 
+//app.use('/', express.static('public'));
+app.use(express.static('public'));
+
 const dbUrl = 'mongodb://127.0.0.1:27017/djangoskhan';
 mongoose.connect(dbUrl, {
 	useCreateIndex: true,
