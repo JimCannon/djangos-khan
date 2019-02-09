@@ -1,0 +1,37 @@
+<h1>Spelare</h1>
+<div>
+	<table class="table table-hover table-bordered">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>First name</th>
+				<th>Last name</th>
+			</tr>	
+		</thead>
+		<tbody>
+			{{#each players}}
+				<tr data-href="/players/{{this.id}}">
+					<td>
+						{{this.number}}
+					</td>
+					<td>
+						{{this.firstName}}
+					</td>
+					<td>
+						{{this.lastName}}
+					</td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</div>
+
+<script>
+	$(document).ready(function() {
+		$('tr').click(function() {
+			const url = $(this).data('href');
+
+			window.location.pathname = url;
+		});
+	});
+</script>

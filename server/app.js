@@ -1,8 +1,10 @@
 const express = require('express');
-const index = require('routes/index');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-Parser');
 const mongoose = require('mongoose');
+
+const index = require('routes/index');
+const players = require('routes/players');
 
 const app = express();
 
@@ -15,7 +17,9 @@ app.use(bodyParser.urlencoded({	extended: false }));
 app.use(bodyParser.json());
 
 //app.use('/', express.static('public'));
-app.use(express.static('public'));
+//app.use(express.static('public'));
+
+app.use(express.static(__dirname + '/public'));
 
 const dbUrl = 'mongodb://127.0.0.1:27017/djangoskhan';
 mongoose.connect(dbUrl, {
@@ -33,6 +37,7 @@ mongoose.connect(dbUrl, {
 
 app.on('db-connected', function() {
 	app.use(index);
+	app.use(players);
 
 	app.listen(3000, () => {
 		console.log('Server started on port 3000!');

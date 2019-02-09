@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    {{!-- <a class="navbar-brand" href="#">Navbar</a> --}}
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-content">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar-content">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item{{#if page.index}} active{{/if}}">
+          <a class="nav-link" href="/index">Index</a>
+        </li>
+        <li class="nav-item{{#if page.players}} active{{/if}}">
+          <a class="nav-link" href="/players">Players</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
