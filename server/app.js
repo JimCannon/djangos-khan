@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 
 const index = require('routes/index');
 const players = require('routes/players');
+const register = require('routes/register');
+const login = require('routes/login');
 
 const app = express();
 
@@ -38,6 +40,8 @@ mongoose.connect(dbUrl, {
 app.on('db-connected', function() {
 	app.use(index);
 	app.use(players);
+	app.use(register);
+	app.use(login);
 
 	app.listen(3000, () => {
 		console.log('Server started on port 3000!');
