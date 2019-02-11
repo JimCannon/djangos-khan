@@ -1,0 +1,10 @@
+div.card-body {
+	height: 200px;
+	margin-top: auto;
+	margin-bottom: auto;
+	width: 400px;
+}
+
+div.card {
+	height: 400px;
+}
