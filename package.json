@@ -17,12 +17,15 @@
     "url": "https://github.com/JimCannon/djangos-khan/issues"
   },
   "homepage": "https://github.com/JimCannon/djangos-khan#readme",
-    "dependencies": {
+  "dependencies": {
+    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
+    "debug": "^4.1.1",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
     "handlebars": "^4.0.12",
-    "mongoose": "^5.4.5"
+    "mongoose": "^5.4.5",
+    "mongoose-unique-validator": "^2.0.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"

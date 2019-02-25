@@ -8,3 +8,42 @@ div.card-body {
 div.card {
 	height: 400px;
 }
+
+.footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+  clear: both;
+}
+
+.starter-header {
+	text-align: center;
+	padding-top: 50px;
+}
+
+.starter-text {
+	text-align: center;
+	padding-top: 10px;
+}
+
+.container {
+	max-width: 800px;
+}
+
+.navbar-expand-lg>.container-fluid {
+    padding-right: 0px;
+    padding-left: 1000px;
+}
+
+.news {
+	max-width: 100%;
+	height: 400px;
+}
+
+img {
+	max-width: 100%;
+	border-radius: 1.5%;
+}
