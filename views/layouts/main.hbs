@@ -6,12 +6,14 @@
 		<script src="/jquery.min.js"></script>
 	</head>
 	<body>
-		{{> navbar}}
-		<div class="container">
-			{{{body}}}
-		</div>
-		<div class="footer">
-	  		<p>Footer</p>
+		<div class="wrapper">
+			{{> navbar}}
+			<div class="main">
+				<div class="container">
+					{{{body}}}
+				</div>	
+			</div>
+			{{> footer}}
 		</div>
 		<script src="/bootstrap.min.js"></script>
 	</body>

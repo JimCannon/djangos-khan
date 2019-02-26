@@ -1,3 +1,27 @@
+html,body {
+	width: 100%;
+	height: 100%;
+}
+
+.wrapper {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.navbar {
+	position: fixed;
+	width: 100%;
+}
+
+.main {
+	flex: 1;
+	flex-basis: auto;
+	margin-top: 56px;
+}
+
+
+
 div.card-body {
 	height: 200px;
 	margin-top: auto;
@@ -10,8 +34,6 @@ div.card {
 }
 
 .footer {
-  position: absolute;
-  bottom: 0px;
   width: 100%;
   background-color: red;
   color: white;
@@ -38,12 +60,9 @@ div.card {
     padding-left: 1000px;
 }
 
-.news {
+.news img {
 	max-width: 100%;
-	height: 400px;
-}
-
-img {
-	max-width: 100%;
+	max-height: 100%;
 	border-radius: 1.5%;
 }
+
