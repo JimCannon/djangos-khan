@@ -14,13 +14,14 @@ html,body {
 	width: 100%;
 }
 
+
+
+
 .main {
 	flex: 1;
 	flex-basis: auto;
 	margin-top: 56px;
 }
-
-
 
 div.card-body {
 	height: 200px;
@@ -31,15 +32,9 @@ div.card-body {
 
 div.card {
 	height: 400px;
+	margin-top: 100px;
 }
 
-.footer {
-  width: 100%;
-  background-color: red;
-  color: white;
-  text-align: center;
-  clear: both;
-}
 
 .starter-header {
 	text-align: center;
@@ -53,6 +48,7 @@ div.card {
 
 .container {
 	max-width: 800px;
+	margin-bottom: 20px;
 }
 
 .navbar-expand-lg>.container-fluid {
@@ -65,4 +61,20 @@ div.card {
 	max-height: 100%;
 	border-radius: 1.5%;
 }
+
+.owl-carousel{
+	display: flex;
+}
+
+
+
+
+.footer {
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  clear: both;
+}
+
 

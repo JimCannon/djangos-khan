@@ -17,20 +17,23 @@ router.get('/register', function(req, res){
 	});
 });
 
+//Register a new user
 router.post('/register', function(req, res) {
 	const result = Joi.validate(req.body, schema);
-	
+	//Check if there was an error
 	if (result.error !== null) {
 		// return res.status(400).send(result.error.message);
+		//If there was an error, return user to same page with warning
 		return res.render('register', {
 			page: {
 				register: true
 			},
+			//Return with same email
 			email: req.body.email,
 			error: result.error
 		});
 	}
-
+	//Create user, throw error if constraint doesnt match 
 	User.create(req.body).then(function() {
 		res.render('register-success');
 	}).catch(function(error) {
@@ -42,8 +45,6 @@ router.post('/register', function(req, res) {
 			error
 		}); 
 	});
-
-	
 });
 
 module.exports = router;
