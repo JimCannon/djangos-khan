@@ -22,15 +22,15 @@ app.use(express.static(__dirname + '/public'));
 
 app.set('trust proxy', 1);
 app.use(session({
-		cookie: {
-			path: '/',
-			httpOnly: true,
-			maxAge: null,
-			secure: false,
-		},
-		resave: true,
-		saveUninitialized: false,
-		secret: process.env.SESSION_SECRET,
+	cookie: {
+		path: '/',
+		httpOnly: true,
+		maxAge: null,
+		secure: false,
+	},
+	resave: true,
+	saveUninitialized: false,
+	secret: process.env.SESSION_SECRET,
 }))
 
 const dbUrl = process.env.DB_URL;

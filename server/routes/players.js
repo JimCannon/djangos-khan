@@ -1,9 +1,10 @@
 import express from 'express';
 import Player from 'models/Player';
+import { isAuth } from 'helpers';
 
 const router = express.Router();
 
-router.get('/', async function(req, res) {
+router.get('/', isAuth, async function(req, res) {
 	try {
 		const players = await Player.find();
 
