@@ -10,6 +10,8 @@ export async function isAuth(req, res, next) {
 				req.session.userId = req.cookies.userId;
 				return next();
 			} catch(err) {
+				delete req.session.userId;
+				res.cookie('userId', '', { expires: new Date(0) });
 				console.log(err);
 			}
 		}
