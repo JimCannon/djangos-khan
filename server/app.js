@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import routes from 'express-recursive-routes';
+import { checkRememberMe } from 'helpers';
 
 const app = express();
 
@@ -50,6 +51,20 @@ mongoose.connect(dbUrl, {
 
 app.on('db-connected', function() {
 	// Check remember me cookies for new sessions
+	app.use(async(req, res, next) => {
+		if (req.session && !req.session.userId) {
+			await checkRememberMe(req, res, next);
+		}
+
+		next();
+	});
+
+	// Send logged in state on every render.
+	app.use((req, res, next) => {
+		app.locals.loggedIn = req.session && req.session.userId;
+		next();
+	});
+
 	routes.mountRoutes(app, './server/routes');
 
 	app.use((req, res) => {
