@@ -26,39 +26,45 @@ schema.plugin(uniqueValidator, {
 	message: 'is already taken'
 });
 
-schema.pre('save', function(next) {
-	//must have arrow functions
-	bcrypt.hash(this.password, 10).then(hashedPassword => {
-		this.password = hashedPassword;
-		next();
-	}).catch(function(err) {
-		next(err);
-	});
+schema.pre('save', async function(next) {
+  try {
+    const hash = await bcrypt.hash(this.password, 10);
+    this.password = hash;
+  } catch (err) {
+    return next(err);
+  }
+
+  next();
 });
 
-schema.statics.login = function({ email, password }, callback) {
-	this.findOne({ email }).then(function(user) {
-		if (!user) {
-			const err = new Error('Couldn\'t find email');
-			err.status = 401;
-			throw err;
-		};
+schema.statics.login = async function({ email, password }) {
+	let user;
 
-		bcrypt.compare(password, user.password).then(function(valid) {
-			console.log(valid)
-			if (!valid) {
-				const err = new Error('Correct email, but wrong password!');
-				err.status = 401;
-				throw err;
-			}
+  try {
+    user = await this.findOne({ email });
+  } catch (err) {
+    throw err;
+  }
 
-			callback();
-		}).catch(function(err) {
-			callback(err);
-		});
-	}).catch(function(err) {
-		callback(err);
-	});
+  if (!user) {
+    const err = new Error('Email or password did not match, try again.');
+    err.status = 401;
+    throw err;
+  }
+
+  try {
+    const result = await bcrypt.compare(password, user.password);
+
+    if (result === true) {
+      return user;
+    } else {
+      const err = new Error('Email or password did not match, try again.');
+      err.status = 401;
+      throw err;
+    }
+  } catch (err) {
+    throw err;
+  }
 };
 
 

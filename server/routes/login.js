@@ -11,28 +11,26 @@ router.get('/login', function(req, res){
 	});
 });
 
-router.post('/login', function(req, res) {
-	User.login(req.body, function(err) {
-		if (err) {
-			return res.render('login', {
-				page: {
-					login: true
-				},
-				error: err,
-				email: req.body.email
-			});
-		}
+router.post('/login', async function(req, res) {
+	const rememberMe = !!req.body.rememberMe;
 
-		res.send('OK!');
-	});
+	try	{
+		const user = await User.login(req.body);
+
+		if (rememberMe) {
+      res.cookie('userId', user._id, {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+      });
+    } else {
+      req.session.userId = user._id;
+    }
+	} catch (err) {
+		res.status(400).render('login', {
+			err,
+			email: req.body.email
+		});
+	}
 });
 
 module.exports = router;
-
-
-
-
-//function get(url, callback) {
-	// when url triggers
-	// callback(req, res)
-//}

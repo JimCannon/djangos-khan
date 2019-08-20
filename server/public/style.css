@@ -46,11 +46,6 @@ div.card {
 	padding-top: 10px;
 }
 
-.container {
-	max-width: 800px;
-	margin-bottom: 20px;
-}
-
 .navbar-expand-lg>.container-fluid {
     padding-right: 0px;
     padding-left: 1000px;
