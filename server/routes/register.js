@@ -1,6 +1,6 @@
-const express = require('express');
-const Joi = require('joi');
-const User = require('models/User');
+import express from 'express';
+import Joi from 'joi';
+import User from 'models/User';
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ const schema = Joi.object().keys({
 	password: Joi.string().regex(/[a-zA-Z0-9!"#€%&"]{6,30}/)
 });
 
-router.get('/register', function(req, res){
+router.get('/', function(req, res){
 	res.render('register', {
 		page: {
 			register: true
@@ -17,26 +17,27 @@ router.get('/register', function(req, res){
 	});
 });
 
-//Register a new user
-router.post('/register', function(req, res) {
+// Register a new user
+router.post('/', async function(req, res) {
 	const result = Joi.validate(req.body, schema);
-	//Check if there was an error
+	// Check if there was an error
 	if (result.error !== null) {
-		// return res.status(400).send(result.error.message);
-		//If there was an error, return user to same page with warning
+		// If there was an error, return user to same page with warning
 		return res.render('register', {
 			page: {
 				register: true
 			},
-			//Return with same email
+			// Return with same email
 			email: req.body.email,
 			error: result.error
 		});
 	}
-	//Create user, throw error if constraint doesnt match 
-	User.create(req.body).then(function() {
+
+	// Create user, throw error if constraint doesnt match 
+	try {
+		await User.create(req.body);
 		res.render('register-success');
-	}).catch(function(error) {
+	} catch (error) {
 		res.render('register', {
 			page: {
 				register: true
@@ -44,7 +45,7 @@ router.post('/register', function(req, res) {
 			email: req.body.email,
 			error
 		}); 
-	});
+	}
 });
 
 module.exports = router;

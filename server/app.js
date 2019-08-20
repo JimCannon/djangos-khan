@@ -1,18 +1,12 @@
-const express = require('express');
-const exphbs = require('express-handlebars');
-const bodyParser = require('body-Parser');
-const mongoose = require('mongoose');
-const session = require('express-session');
+import {} from 'dotenv/config';
 
-//const cookieParser = require('cookie-parser');
-//const session = require('express-session');
-
-const index = require('routes/index');
-const players = require('routes/players');
-const register = require('routes/register');
-const login = require('routes/login');
-
-const cookieParser = require('cookie-parser');
+import express from 'express';
+import exphbs from 'express-handlebars';
+import bodyParser from 'body-Parser';
+import mongoose from 'mongoose';
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
+import routes from 'express-recursive-routes';
 
 const app = express();
 
@@ -24,20 +18,22 @@ app.set('view engine', '.hbs');
 app.use(bodyParser.urlencoded({	extended: false }));
 app.use(bodyParser.json());
 
-//app.use('/', express.static('public'));
-//app.use(express.static('public'));
-
 app.use(express.static(__dirname + '/public'));
 
-app.set('trust proxy', 1) // trust first proxy
+app.set('trust proxy', 1);
 app.use(session({
-  secret: 'secret',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
+		cookie: {
+			path: '/',
+			httpOnly: true,
+			maxAge: null,
+			secure: false,
+		},
+		resave: true,
+		saveUninitialized: false,
+		secret: process.env.SESSION_SECRET,
 }))
 
-const dbUrl = 'mongodb://127.0.0.1:27017/djangoskhan';
+const dbUrl = process.env.DB_URL;
 mongoose.connect(dbUrl, {
 	useCreateIndex: true,
 	useNewUrlParser: true,
@@ -52,10 +48,11 @@ mongoose.connect(dbUrl, {
 });	
 
 app.on('db-connected', function() {
-	app.use(index);
-	app.use(players);
-	app.use(register);
-	app.use(login);
+	routes.mountRoutes(app, './server/routes');
+
+	app.use((req, res) => {
+		res.status(404).send('<h1>404 - Not found</h1>')
+	});
 
 	app.listen(3000, () => {
 		console.log('Server started on port 3000!');

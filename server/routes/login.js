@@ -1,10 +1,10 @@
-const express = require('express');
-const User = require('models/User');
-const cookieParser = require('cookie-parser');
+import express from 'express';
+import User from 'models/User';
+import cookieParser from 'cookie-parser';
 
 const router = express.Router();
 
-router.get('/login', function(req, res){
+router.get('/', function(req, res){
 	res.render('login', {
 		page: {
 			login: true
@@ -12,14 +12,14 @@ router.get('/login', function(req, res){
 	});
 });
 
-router.post('/login', async function(req, res) {
-	//convert rememberMe checkbox as boolean
+router.post('/', async function(req, res) {
+	// Convert rememberMe checkbox as boolean
 	const rememberMe = !!req.body.rememberMe;
 
 	try {
 		const user = await User.login(req.body);
 		
-		if(rememberMe) {
+		if (rememberMe) {
 			res.cookie('userId', user._id, {
 				maxAge: 30 * 24 * 60 * 60 * 1000,
 				httpOnly: true,
@@ -35,7 +35,7 @@ router.post('/login', async function(req, res) {
 		});
 	}
 
-	res.redirect('/index');
+	res.redirect('/');
 });
 
 module.exports = router;

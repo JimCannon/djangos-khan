@@ -1,31 +1,36 @@
-const express = require('express');
-const router = express.Router();
-const Player = require('models/Player');
+import express from 'express';
+import Player from 'models/Player';
 
-router.get('/players', function(req, res) {
-	Player.find().then(function(players) {
+const router = express.Router();
+
+router.get('/', async function(req, res) {
+	try {
+		const players = await Player.find();
+
 		res.render('players', {
 			players,
 			page: {
 				players: true
 			},
 		});
-	}).catch(function(error) {
+	} catch (error) {
 		res.status(500).send(error);
-	});
+	}
 });
 
-router.get('/players/:id', function(req, res) {
-	Player.findById(req.params.id).then(function(player) {
+router.get('/:id', async function(req, res) {
+	try {
+		const player = await Player.findById(req.params.id);
+
 		res.render('player', {
 			player,
 			page: {
 				players: true
 			},
 		});
-	}).catch(function(error) {
+	} catch (error) {
 		res.status(500).send(error);
-	});
+	}
 });
 
 module.exports = router;
