@@ -17,6 +17,7 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 app.use(bodyParser.urlencoded({	extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.use(express.static(__dirname + '/public'));
 
@@ -48,6 +49,7 @@ mongoose.connect(dbUrl, {
 });	
 
 app.on('db-connected', function() {
+	// Check remember me cookies for new sessions
 	routes.mountRoutes(app, './server/routes');
 
 	app.use((req, res) => {

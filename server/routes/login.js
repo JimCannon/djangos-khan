@@ -27,10 +27,9 @@ router.post('/', async function(req, res) {
 		} else {
 			req.session.userId = user._id;
 		}
-	} catch(e) {
-		console.log(e)
+	} catch(err) {
 		res.status(400).render('login', {
-			e,
+			err,
 			email: req.body.email
 		});
 	}

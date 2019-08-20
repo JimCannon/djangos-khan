@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/', function(req, res){
 	delete req.session.userId;
-	// res.cookie('rememberMe', '', { expires: new Date(0) });
+	res.cookie('userId', '', { expires: new Date(0) });
 	res.redirect('/');
 });
 
