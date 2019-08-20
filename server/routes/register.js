@@ -1,6 +1,7 @@
 import express from 'express';
 import Joi from 'joi';
 import User from 'models/User';
+import cookieParser from 'cookie-parser';
 
 const router = express.Router();
 
@@ -35,7 +36,8 @@ router.post('/', async function(req, res) {
 
 	// Create user, throw error if constraint doesnt match 
 	try {
-		await User.create(req.body);
+		const user = await User.create(req.body);
+		req.session.userId = user._id;
 		res.render('register-success');
 	} catch (error) {
 		res.render('register', {
