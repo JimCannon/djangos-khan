@@ -2,11 +2,17 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-Parser');
 const mongoose = require('mongoose');
+const session = require('express-session');
+
+//const cookieParser = require('cookie-parser');
+//const session = require('express-session');
 
 const index = require('routes/index');
 const players = require('routes/players');
 const register = require('routes/register');
 const login = require('routes/login');
+
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -22,6 +28,14 @@ app.use(bodyParser.json());
 //app.use(express.static('public'));
 
 app.use(express.static(__dirname + '/public'));
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
 
 const dbUrl = 'mongodb://127.0.0.1:27017/djangoskhan';
 mongoose.connect(dbUrl, {

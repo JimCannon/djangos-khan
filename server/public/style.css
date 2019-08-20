@@ -46,6 +46,10 @@ div.card {
 	padding-top: 10px;
 }
 
+.container {
+	max-width: 800px;
+}
+
 .navbar-expand-lg>.container-fluid {
     padding-right: 0px;
     padding-left: 1000px;
@@ -55,11 +59,26 @@ div.card {
 	max-width: 100%;
 	max-height: 100%;
 	border-radius: 1.5%;
-}
+}a
 
 .owl-carousel{
 	display: flex;
 }
+
+.owl-carousel .item {
+  position: relative;
+  z-index: 100; 
+  -webkit-backface-visibility: hidden; 
+}
+
+.carousel-wrap {
+  margin: 90px auto;
+  padding: 0 5%;
+  width: 80%;
+  position: relative;
+}
+
+
 
 
 
@@ -71,5 +90,3 @@ div.card {
   text-align: center;
   clear: both;
 }
-
-

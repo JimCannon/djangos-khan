@@ -27,45 +27,43 @@ schema.plugin(uniqueValidator, {
 });
 
 schema.pre('save', async function(next) {
-  try {
-    const hash = await bcrypt.hash(this.password, 10);
-    this.password = hash;
-  } catch (err) {
-    return next(err);
-  }
+	try {
+		const hash = await bcrypt.hash(this.password, 10);
+		this.password = hash;
+	} catch(err) {
+		return next(err);
+	}
 
-  next();
+	next();
 });
 
-schema.statics.login = async function({ email, password }) {
+schema.statics.login = async function({ email, password}) {
 	let user;
 
-  try {
-    user = await this.findOne({ email });
-  } catch (err) {
-    throw err;
-  }
+	try {
+		user = await this.findOne({ email });
+	} catch (err) {
+		throw err;
+	}
 
-  if (!user) {
-    const err = new Error('Email or password did not match, try again.');
-    err.status = 401;
-    throw err;
-  }
+	if (!user) {
+		const err = new Error('Email or password did not match, try again.');
+		err.status = 401;
+		throw err;
+	}
 
-  try {
-    const result = await bcrypt.compare(password, user.password);
-
-    if (result === true) {
-      return user;
-    } else {
-      const err = new Error('Email or password did not match, try again.');
-      err.status = 401;
-      throw err;
-    }
-  } catch (err) {
-    throw err;
-  }
+	try {
+		const result = await bcrypt.compare(password, user.password);
+		if(result === true){
+			return user;
+		} else {
+			const err = new Error('Email or password did not match, try again.');
+			err.status = 401;
+			throw err;
+		}
+	} catch (err) {
+		throw err;
+	}
 };
-
 
 module.exports = mongoose.model("users", schema);
