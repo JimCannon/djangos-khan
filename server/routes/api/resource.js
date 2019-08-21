@@ -13,4 +13,13 @@ router.post('/', isLoggedIn, getAuth, async function(req, res) {
 	}
 });
 
+router.delete('/', isLoggedIn, getAuth, async function(req, res) {
+	try {
+		await Resource.findByIdAndRemove(req.query.id);
+		res.end();
+	} catch (err) {
+		res.status(400).json({ err });
+	}
+});
+
 module.exports = router;
