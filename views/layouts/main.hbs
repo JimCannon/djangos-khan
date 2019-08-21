@@ -1,23 +1,30 @@
 <html>
 	<head>
-		<title>Hej hopp</title>
-		<link rel="stylesheet" href="/bootstrap.min.css">
-		<link rel="stylesheet" href="/style.css">
-		<link rel="stylesheet" href="/owl.carousel.min.css">
-		<link rel="stylesheet" href="/owl.theme.default.min.css">
-		<script src="/jquery.min.js"></script>
+		<title>Djangos Khan{{#if page}} - {{page.title}}{{/if}}</title>
+		<meta name="description" content="Website for Djangos Khan football team">
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Djangos Khan{{#if page}} - {{page.title}}{{/if}}" />
+		<meta property="og:description" content="Website for Djangos Khan football team" />
+		<meta property="og:image" content="/media/img/defeat.png" />
+		<!-- <meta property="og:url" content="" /> -->
+		<meta property="og:site_name" content="Djangos Khan" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			body {
+				opacity: 0;
+			}
+		</style>
 	</head>
 	<body>
-		<div class="wrapper">
-			{{> navbar}}
-			<div class="main">
-				<div class="container">
-					{{{body}}}
-				</div>	
-			</div>
-			{{> footer}}
+		{{> navbar}}
+		<div class="main">
+			{{{body}}}
 		</div>
-		<script src="/owl.carousel.min.js"></script>
-		<script src="/bootstrap.min.js"></script>
+		{{> footer}}
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/style.min.css">
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/script.min.js"></script>
 	</body>
 </html>

@@ -7,28 +7,31 @@
 
     <div class="collapse navbar-collapse" id="navbar-content">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item{{#if page.index}} active{{/if}}">
+        <li class="nav-item{{#if page}}{{#if page.index}} active{{/if}}{{/if}}">
           <a class="nav-link" href="/">Index</a>
         </li>
         {{#if loggedIn}}
-          <li class="nav-item{{#if page.players}} active{{/if}}">
+          <li class="nav-item{{#if page}}{{#if page.players}} active{{/if}}{{/if}}">
             <a class="nav-link" href="/players">Players</a>
           </li>
         {{/if}}
       </ul>
       <ul class="navbar-nav">
         {{#if loggedIn}}
-          <li class="nav-item{{#if page.myPages}} active{{/if}}">
-            <a class="nav-link disabled" href="#">My pages</a>
+          <li class="nav-item{{#if page}}{{#if page.admin}} active{{/if}}{{/if}}">
+            <a class="nav-link" href="/admin">Admin</a>
+          </li>
+          <li class="nav-item{{#if page}}{{#if page.account}} active{{/if}}{{/if}}">
+            <a class="nav-link" href="/account">Account</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/logout">Log out</a>
           </li>
         {{else}}
-          <li class="nav-item{{#if page.login}} active{{/if}}">
+          <li class="nav-item{{#if page}}{{#if page.login}} active{{/if}}{{/if}}">
             <a class="nav-link" href="/login">Log in</a>
           </li>
-          <li class="nav-item{{#if page.register}} active{{/if}}">
+          <li class="nav-item{{#if page}}{{#if page.register}} active{{/if}}{{/if}}">
             <a class="nav-link" href="/register">Register</a>
           </li>
         {{/if}}

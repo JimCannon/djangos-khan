@@ -1,12 +1,13 @@
 import {} from 'dotenv/config';
 
-import express from 'express';
-import exphbs from 'express-handlebars';
 import bodyParser from 'body-Parser';
-import mongoose from 'mongoose';
-import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import exphbs from 'express-handlebars';
+import express from 'express';
+import mongoose from 'mongoose';
+import path from 'path';
 import routes from 'express-recursive-routes';
+import session from 'express-session';
 import { checkRememberMe } from 'helpers';
 
 const app = express();
@@ -20,7 +21,7 @@ app.use(bodyParser.urlencoded({	extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.set('trust proxy', 1);
 app.use(session({
@@ -54,9 +55,9 @@ app.on('db-connected', function() {
 	app.use(async(req, res, next) => {
 		if (req.session && !req.session.userId) {
 			await checkRememberMe(req, res, next);
+		} else {
+			next();
 		}
-
-		next();
 	});
 
 	// Send logged in state on every render.

@@ -1,32 +1,34 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
-	firstName: String,
-	lastName: String,
-	nickName: String,
+	age: Number,
+	apps: Number,
 	contactInfo: {
 		email: String,
 		phoneNumber: String,
 	},
-	position: String,
-	apps: Number,
+	firstName: String,
 	goals: Number,
-	age: Number,
-	number: Number,
-	preferredFoot: String,
+	lastName: String,
 	length: Number,
+	nickName: String,
+	number: Number,
+	position: String,
+	preferredFoot: String,
 	stats: {
-		pace: Number,
-		shooting: Number,
-		passing: Number,
-		dribbling: Number,
-		defence: Number,
-		physical: Number,
 		attacker: Number,
+		beast: Number,
+		defence: Number,
 		defender: Number,
+		dribbling: Number,
+		pace: Number,
+		passing: Number,
+		physical: Number,
+		shooting: Number,
 		styleOfPlay: String,
-		beast: Number
-	}
+	},
+}, {
+	timestamps: true
 });
 
-module.exports = mongoose.model("players", schema);
+module.exports = mongoose.model('Player', schema);

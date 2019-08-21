@@ -1,0 +1,29 @@
+<div class="modal" tabindex="-1" role="dialog" id="createResourceModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Create Resource</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form method="post" action="/api/resource">
+					<div class="form-group">
+						<label for="create-resource-name">Name</label>
+						<input type="text" class="form-control" id="create-resource-name" placeholder="Resource name" name="name">
+					</div>
+					<div class="form-group">
+						<label for="create-resource-url">Url</label>
+						<input type="text" class="form-control" id="create-resource-url" placeholder="Resource url" name="url">
+					</div>
+				</form>
+				<div class="alert alert-danger d-none" role="alert"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary">Create</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+			</div>
+		</div>
+	</div>
+</div>

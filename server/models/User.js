@@ -2,21 +2,24 @@ import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 import bcrypt from 'bcrypt';
 
-//Create collection User with 
 const schema = new mongoose.Schema({
 	email: {
-		type: String,
-		required: [true, 'cannot be blank'],
-		match: [/\S+@\S+\.\S+/, 'is invalid'],
-		trim: true,
-		lowercase: true,
 		index: true,
+		lowercase: true,
+		match: [/\S+@\S+\.\S+/, 'is invalid'],
+		required: [true, 'cannot be blank'],
+		trim: true,
+		type: String,
 		unique: true,
 	},
 	password: {
-		type: String,
 		required: [true, 'cannot be blank'],
 		trim: true,
+		type: String,
+	},
+	role: {
+		ref: 'Role',
+		type: mongoose.Schema.Types.ObjectId,
 	}
 }, {
 	timestamps: true
@@ -66,4 +69,4 @@ schema.statics.login = async function({ email, password}) {
 	}
 };
 
-module.exports = mongoose.model("users", schema);
+module.exports = mongoose.model('User', schema);

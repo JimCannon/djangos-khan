@@ -1,0 +1,48 @@
+<div class="container page-admin">
+	<h1>Admin</h1>
+	<hr>
+	<h4>Users</h4>
+	<ul class="list-unstyled">
+		{{#each users}}
+		<li>{{this.email}} - {{this.role.name}} ({{this._id}})<li>
+		{{/each}}
+	</ul>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal">Create</button>
+	<hr>
+	<h4>Roles</h4>
+	<ul class="list-unstyled">
+		{{#each roles}}
+		<li>{{this.name}} ({{this._id}})<li>
+		{{/each}}
+	</ul>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createRoleModal">Create</button>
+	<hr>
+	<h4>Resources</h4>
+	<ul class="list-unstyled">
+		{{#each resources}}
+		<li>{{this.name}} - {{this.url}} ({{this._id}})<li>
+		{{/each}}
+	</ul>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createResourceModal">Create</button>
+	<hr>
+	<h4>Permissions</h4>
+	<ul class="list-unstyled">
+		{{#each permissions}}
+		<li>{{this.method}} ({{this._id}})<li>
+		{{/each}}
+	</ul>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPermissionModal">Create</button>
+	<hr>
+	<h4>Authentications</h4>
+	<ul class="list-unstyled">
+		{{#each auth}}
+		<li>{{this.permission.method}} {{this.resource.name}} ({{this.resource.url}}): Allowed by role {{this.role.name}}<li>
+		{{/each}}
+	</ul>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAuthModal">Create</button>
+</div>
+{{> modals/create-user this}}
+{{> modals/create-role}}
+{{> modals/create-resource}}
+{{> modals/create-permission}}
+{{> modals/create-auth this}}

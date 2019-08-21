@@ -7,7 +7,8 @@ const router = express.Router();
 router.get('/', function(req, res){
 	res.render('login', {
 		page: {
-			login: true
+			login: true,
+			title: 'Log in',
 		},
 	});
 });
@@ -28,7 +29,7 @@ router.post('/', async function(req, res) {
 			req.session.userId = user._id;
 		}
 	} catch(err) {
-		res.status(400).render('login', {
+		return res.status(400).render('login', {
 			err,
 			email: req.body.email
 		});

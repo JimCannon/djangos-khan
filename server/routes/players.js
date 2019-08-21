@@ -1,17 +1,18 @@
 import express from 'express';
 import Player from 'models/Player';
-import { isAuth } from 'helpers';
+import { isLoggedIn } from 'helpers';
 
 const router = express.Router();
 
-router.get('/', isAuth, async function(req, res) {
+router.get('/', isLoggedIn, async function(req, res) {
 	try {
 		const players = await Player.find();
 
 		res.render('players', {
 			players,
 			page: {
-				players: true
+				players: true,
+				title: 'Players',
 			},
 		});
 	} catch (error) {
@@ -26,7 +27,8 @@ router.get('/:id', async function(req, res) {
 		res.render('player', {
 			player,
 			page: {
-				players: true
+				players: true,
+				title: `Player ${player.firstName} ${player.lastName}`,
 			},
 		});
 	} catch (error) {
