@@ -10,8 +10,13 @@
 			<div class="modal-body">
 				<form method="post" action="/api/permission">
 					<div class="form-group">
-						<label for="create-permission-name">Name</label>
-						<input type="text" class="form-control" id="create-permission-name" placeholder="Permission name" name="method">
+						<label for="create-permission-role">Name</label>
+						<select class="form-control" id="create-permission-role" name="method">
+							<option value="GET">GET</option>
+							<option value="POST">POST</option>
+							<option value="PUT">PUT</option>
+							<option value="DELETE">DELETE</option>
+						</select>
 					</div>
 				</form>
 				<div class="alert alert-danger d-none" role="alert"></div>

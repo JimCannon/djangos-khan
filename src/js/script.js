@@ -10,6 +10,15 @@ $(document).ready(function() {
 			const $modal = $(this).closest('.modal');
 			submitAdminModal($modal);
 		});
+
+		$('.badge-danger').click(function() {
+			const url = $(this).data('url');
+			$.ajax({ url, method: 'DELETE' }).then(function() {
+				location.reload();
+			}).fail(function(err) {
+				console.log(err);
+			});
+		});
 	}
 
 	function submitAdminModal($modal) {
@@ -18,8 +27,13 @@ $(document).ready(function() {
 		$.post($form[0].action, $form.serialize()).then(function() {
 			location.reload();
 		}).fail(function(err) {
-			console.error(err.responseJSON)
-			$modal.find('.alert').text(err.responseJSON.err.message || err.responseJSON).removeClass('d-none');
+			let text = 'Something went wrong';
+
+			if (err.status === 401) {
+				text = 'Access denied';
+			}
+
+			$modal.find('.alert').text(err && err.responseJSON && err.responseJSON.err.message || text).removeClass('d-none');
 		});
 	}
 

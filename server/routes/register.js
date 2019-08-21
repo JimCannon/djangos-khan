@@ -38,16 +38,7 @@ router.post('/', async function(req, res) {
 	try {
 		const user = await User.create(req.body);
 		req.session.userId = user._id;
-		res.render('index', {
-			page: {
-				index: true,
-				title: 'Index',
-			},
-			message: {
-				type: 'success',
-				text: `Successfully registered "${user.email}"`,
-			}
-		});
+		res.redirect('/account');
 	} catch (err) {
 		res.status(err.code || 400).render('register', {
 			page: {

@@ -35,7 +35,7 @@ router.post('/', async function(req, res) {
 		});
 	}
 
-	res.redirect('/');
+	res.redirect('/account');
 });
 
 module.exports = router;

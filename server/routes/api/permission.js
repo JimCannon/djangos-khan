@@ -9,6 +9,7 @@ router.post('/', isLoggedIn, getAuth, async function(req, res) {
 		const permission = await Permission.create(req.body);
 		res.json(permission);
 	} catch (err) {
+		console.log(err);
 		res.status(400).json({ err });
 	}
 });

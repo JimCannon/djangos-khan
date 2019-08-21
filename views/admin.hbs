@@ -12,7 +12,7 @@
 	<h4>Roles</h4>
 	<ul class="list-unstyled">
 		{{#each roles}}
-		<li>{{this.name}} ({{this._id}})<li>
+		<li>{{this.name}} ({{this._id}}) <span class="btn badge badge-danger" data-url="/api/role?id={{this._id}}">Delete</span><li>
 		{{/each}}
 	</ul>
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createRoleModal">Create</button>
@@ -36,7 +36,7 @@
 	<h4>Authentications</h4>
 	<ul class="list-unstyled">
 		{{#each auth}}
-		<li>{{this.permission.method}} {{this.resource.name}} ({{this.resource.url}}): Allowed by role {{this.role.name}}<li>
+		<li>{{this.resource.name}} {{this.permission.method}} ({{this.resource.url}}): Allowed by role {{this.role.name}}<li>
 		{{/each}}
 	</ul>
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAuthModal">Create</button>
