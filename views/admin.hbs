@@ -4,7 +4,7 @@
 	<h4>Users</h4>
 	<ul class="list-unstyled">
 		{{#each users}}
-		<li>{{this.email}} - {{this.role.name}} ({{this._id}})) <span class="btn badge badge-danger" data-url="/api/user?id={{this._id}}">Delete</span></li>
+		<li>{{this.email}} - {{this.role.name}} ({{this._id}}) <span class="btn badge badge-danger" data-url="/api/user?id={{this._id}}">Delete</span></li>
 		{{/each}}
 	</ul>
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal">Create</button>
@@ -20,7 +20,7 @@
 	<h4>Resources</h4>
 	<ul class="list-unstyled">
 		{{#each resources}}
-		<li>{{this.name}} - {{this.url}} ({{this._id}})) <span class="btn badge badge-danger" data-url="/api/resource?id={{this._id}}">Delete</span></li>
+		<li>{{this.name}} - {{this.url}} ({{this._id}}) <span class="btn badge badge-danger" data-url="/api/resource?id={{this._id}}">Delete</span></li>
 		{{/each}}
 	</ul>
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createResourceModal">Create</button>
@@ -28,7 +28,7 @@
 	<h4>Permissions</h4>
 	<ul class="list-unstyled">
 		{{#each permissions}}
-		<li>{{this.method}} ({{this._id}})) <span class="btn badge badge-danger" data-url="/api/permission?id={{this._id}}">Delete</span></li>
+		<li>{{this.method}} ({{this._id}}) <span class="btn badge badge-danger" data-url="/api/permission?id={{this._id}}">Delete</span></li>
 		{{/each}}
 	</ul>
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPermissionModal">Create</button>
@@ -36,7 +36,7 @@
 	<h4>Authentications</h4>
 	<ul class="list-unstyled">
 		{{#each auth}}
-		<li>{{this.resource.name}} {{this.permission.method}} ({{this.resource.url}}): Allowed by role {{this.role.name}}) <span class="btn badge badge-danger" data-url="/api/auth?id={{this._id}}">Delete</span></li>
+		<li>{{this.resource.name}} {{this.permission.method}} ({{this.resource.url}}): Allowed by role {{this.role.name}} ({{this._id}}) <span class="btn badge badge-danger" data-url="/api/auth?id={{this._id}}">Delete</span></li>
 		{{/each}}
 	</ul>
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAuthModal">Create</button>

@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', isLoggedIn, async function(req, res) {
 	try {
-		const user = await User.findById(req.session.userId);
+		const user = await User.findById(req.session.userId).populate('role');
 
 		res.render('account', {
 			user,
