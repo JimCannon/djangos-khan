@@ -38,7 +38,10 @@
     "owl.carousel": "^2.3.4"
   },
   "devDependencies": {
-    "@babel/node": "^7.5.5",
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "babel-preset-env": "^1.7.0",
     "core-js": "^3.2.1",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
@@ -48,7 +51,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
     "node-sass": "^4.12.0",
-    "nodemon": "^1.18.9",
+    "nodemon": "^1.19.3",
     "regenerator-runtime": "^0.13.3"
   }
 }
