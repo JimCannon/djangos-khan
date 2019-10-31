@@ -28,6 +28,7 @@ function js() {
 		}))
 		.pipe(uglify())
 		.pipe(concat('script.min.js'))
+		.pipe(concat('carousel.min.js'))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('public/js'));
 }

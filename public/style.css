@@ -1,5 +1,4 @@
-/*html,
-body {
+html, body {
 	width: 100%;
 	height: 100%;
 }
@@ -59,23 +58,6 @@ div.card {
 	border-radius: 1.5%;
 }
 
-.owl-carousel{
-	display: flex;
-}
-
-.owl-carousel .item {
-  position: relative;
-  z-index: 100; 
-  -webkit-backface-visibility: hidden; 
-}
-
-.carousel-wrap {
-  margin: 90px auto;
-  padding: 0 5%;
-  width: 80%;
-  position: relative;
-}
-
 .footer {
   width: 100%;
   background-color: black;
@@ -83,4 +65,3 @@ div.card {
   text-align: center;
   clear: both;
 }
-*/
