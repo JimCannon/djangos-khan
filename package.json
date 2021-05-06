@@ -30,7 +30,7 @@
     "express-recursive-routes": "^2.1.0",
     "express-session": "^1.16.2",
     "gulp-cli": "^2.2.0",
-    "handlebars": "^4.0.12",
+    "handlebars": "^4.7.7",
     "install": "^0.12.2",
     "joi": "^14.3.1",
     "jsdom": "^15.2.0",
